@@ -5,7 +5,7 @@ FROM registry.access.redhat.com/ubi8/httpd-24
 WORKDIR /var/www/html
 
 # Copy your HTML files into Apache's document root
-COPY . /var/www/html/
+COPY index.html /var/www/html/
 
 # Fix permissions for OpenShift's non-root user
 RUN chown -R 1001:0 /var/www/html && chmod -R g+rw /var/www/html
