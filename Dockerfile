@@ -1,12 +1,17 @@
-# Use the official Apache HTTPD base image
-FROM httpd
+# Use the official NGINX image from Docker Hub
+FROM nginx:latest
 
-# Copy your index.html or entire site into Apache's default web directory
-COPY index.html /usr/local/apache2/htdocs/
+# Copy custom configuration file (optional)
+# Make sure you have nginx.conf in the same directory as this Dockerfile
+#COPY nginx.conf /etc/nginx/nginx.conf
 
-# Optional: If you have other static assets (CSS, JS, images), copy them too
-# COPY assets/ /usr/local/apache2/htdocs/assets/
+# Copy static website files (optional)
+# For example, if you have an 'html' folder with index.html
+COPY index.html /usr/share/nginx/html/
 
-# Expose port 80 for HTTP traffic
+# Expose port 80
 EXPOSE 80
+
+# Start NGINX
+CMD ["nginx", "-g", "daemon off;"]
 
